@@ -1,5 +1,6 @@
 
 def menu():
+    """Função para exibir o Menu"""
     menu = """\n
     ================ MENU ================
     [1]\tDepositar
@@ -58,6 +59,7 @@ def sacar(*, saldo, valor, extrato, limite, limite_saque):
 
     return saldo, extrato, limite_saque
 
+
 def exibir_extrato(saldo, /, *, extrato):
     """Função para acessar o extrato da conta"""
     saldo_extrato = f'{saldo:.2f}'
@@ -102,10 +104,12 @@ def cadastrar_usuario(usuarios):
         print("Numero de CPF invalido!")
     
 def filtrar_usuario(cpf, usuarios):
+    """Função para verificar se existem usuarios já cadastrados com o mesmo CPF"""
     usuarios_filtrados = [usuario for usuario in usuarios if usuario["cpf"] == cpf]
     return usuarios_filtrados[0] if usuarios_filtrados else None
 
 def cpf_formatado(cpf):
+    """Função para formatar o CPF sem pontos ou tracos Ex: 12345678912 """
     cpf = cpf.strip()
     cpf = cpf.replace('.','').replace('-','')
     return cpf
@@ -126,6 +130,7 @@ def cadastrar_conta(agencia, numero_conta, usuarios):
     print("\n@@@ Usuário não encontrado, fluxo de criação de conta encerrado! @@@")
 
 def listar_contas(contas):
+    """Função para listar as contas cadastradas"""
     if contas:
         for conta in contas:
             linha = f"""\
@@ -139,6 +144,7 @@ def listar_contas(contas):
         print("\nAinda não existem contas cadastradas.")
 
 def main():
+    """Função para inicio do programa"""
 
     saldo = 0
     AGENCIA = "0001"
@@ -169,7 +175,6 @@ def main():
             limite=LIMITE,
             limite_saque=limite_saque,
             )
-
 
         elif opcao == "3":
             exibir_extrato(saldo, extrato=extrato)
